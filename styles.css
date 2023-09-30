@@ -1,0 +1,66 @@
+/* styles.css */
+.banner {
+    background-color: #42414d; /* Background color of the banner */
+    color: #ffdc5d; /* Text color of the banner */
+    padding: 5px; /* Padding around content within the banner */
+    text-align: center; /* Center-align text within the banner */
+}
+
+.banner h1 {
+    font-size: 50px; /* Font size of the heading */
+}
+
+/* styles.css */
+body {
+    background-color: #2b2a33; /* Change this to the desired background color */
+    /* Other CSS styles for the body element */
+}
+
+#context {
+	color:#fff;
+        text-align: center; /* Center-align text within the banner */
+}
+
+#options{
+        text-align: center; /* Center-align text within the banner */
+}
+
+#options button{
+	background-color:#42414d;
+	font-size:150px;
+	padding:20px;
+	margin:20px;
+}
+
+#scoreboard{
+	text-align:center;
+	font-size:30px;
+	color:#fff;
+}
+
+#player, #computer {
+	display:inline-block;
+	margin:20px;
+}
+
+#player-move, #computer-move{
+	background-color:#fff;
+	font-size:200px;
+}
+
+#result {
+	color:#fff;
+	text-align:center;
+	font-size:30px;
+	padding:20px
+}
+
+#move-played {
+	text-align:center;
+}
+
+#final-result {
+    color: #ffdc5d; /* Text color of the banner */
+    text-align:center;
+    font-size:50px;
+}

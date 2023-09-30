@@ -15,51 +15,75 @@ function getComputerChoice(){
 function playRound(playerSelection, computerSelection) {
 	playersel = playerSelection.toLowerCase();
 	computersel = computerSelection;
-
+	const result = document.querySelector("#result");
 	if(playersel===computersel){
-		console.log(`Tie`);
+		result.textContent = `It's a Tie!`;
 		return 0;
 	}
 
 	else if(playersel==="rock"&&computersel==="scissors" ||
 		playersel==="paper"&&computersel==="rock" ||
 		playersel==="scissors"&&computersel==="paper"){
-		console.log(`Won!!! ${playersel} beats ${computersel}`);
+		result.textContent = `Won!!! ${playersel} beats ${computersel}`;
 		return 1;
 	}
 
 	else{
-		console.log(`Lost!!! ${computersel} beats ${playersel}`);
+		result.textContent = `Lost!!! ${computersel} beats ${playersel}`;
 		return -1;
 	}
 }
 
-function game(){
-	playerPoint = 0;
-	computerPoint = 0;
-	for(let i=0; i<5; i++){
-		console.log(`Round: ${i}`);
-		compsel = getComputerChoice();
-		plrsel = prompt("(rock or paper or scissors?)\nenter your choice:");
-		console.log(`player:${plrsel} v computer:${compsel}`);
-		result = playRound(plrsel,compsel);
-		if(result===1){
-			playerPoint++;
-		}
-		else if(result===-1){
-			computerPoint++;
-		}
-		console.log(`Current score\nplayer: ${playerPoint}\ncomputer: ${computerPoint}`);
+function handleClick(playerchoice){
+	const finalResult = document.querySelector("#final-result");
+	if(finalResult.textContent.length>0){
+		finalResult.textContent = "";
 	}
-	if(playerPoint>computerPoint){
-		console.log("You Win!!!  :)")
+
+	const playerScore = document.querySelector("#plr-score");
+	const computerScore = document.querySelector("#cmp-score");
+	playerPoint = playerScore.textContent;
+	computerPoint = computerScore.textContent;
+	compsel = getComputerChoice();
+	result = playRound(playerchoice,compsel);
+
+	const playerMove = document.querySelector("#player-move");
+	const computerMove = document.querySelector("#computer-move");
+	const dict = {
+		"rock":"✊",
+		"paper":"✋",
+		"scissors":"✌️"
+	};
+	playerMove.textContent = dict[playerchoice];
+	computerMove.textContent = dict[compsel];
+	if(result===1){
+		playerPoint++;
 	}
-	else if(playerPoint==computerPoint){
-		console.log("It's a Tie");
+	else if(result===-1){
+		computerPoint++;
 	}
-	else{
-		console.log("You Lose... :(");
+	console.log(`Current score\nplayer: ${playerPoint}\ncomputer: ${computerPoint}`);
+	
+	
+	if(playerPoint >= 5){
+		finalResult.textContent = "You Won!!!👍(play again?)";
+		playerPoint = 0;
+		computerPoint = 0;
 	}
+	if(computerPoint >=5){
+		finalResult.textContent = "You Lost!👎(play again?)";
+		playerPoint = 0;
+		computerPoint = 0;
+	}
+	playerScore.textContent = playerPoint;
+	computerScore.textContent = computerPoint;
 }
 
-game();
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+
+rock.addEventListener('click',()=>handleClick("rock"));
+paper.addEventListener('click',()=>handleClick("paper"));
+scissors.addEventListener('click',()=>handleClick("scissors"));
+
